@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        // Fix for "Cannot set property fetch of #<Window> which has only a getter"
+        try {
+          var _rawFetch = window.fetch;
+          var _boundFetch = _rawFetch ? _rawFetch.bind(window) : null;
+          var _currentFetch = _boundFetch;
+          Object.defineProperty(window, 'fetch', {
+            get: function() {
+              return _currentFetch;
+            },
+            set: function(val) {
+              _currentFetch = val;
+            },
+            configurable: true,
+            enumerable: true
+          });
+        } catch (e) {
+          try {
+            var proto = Object.getPrototypeOf(window);
+            if (proto && Object.getOwnPropertyDescriptor(proto, 'fetch')) {
+              var _protoRawFetch = proto.fetch;
+              var _protoBoundFetch = _protoRawFetch ? _protoRawFetch.bind(window) : null;
+              var _curProtoFetch = _protoBoundFetch;
+              Object.defineProperty(proto, 'fetch', {
+                get: function() { return _curProtoFetch; },
+                set: function(val) { _curProtoFetch = val; },
+                configurable: true,
+                enumerable: true
+              });
+            }
+          } catch (e2) {}
+        }
+
+        window.addEventListener('error', function(event) {
+          if (event && event.message && event.message.indexOf('Cannot set property fetch') !== -1) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+      })();
+    </script>
+    <title>Không Gian 3D: Hai Đường Thẳng Song Song</title>
+    <meta name="description" content="Phòng thí nghiệm hình học không gian 3D tương tác: Khám phá vị trí tương đối của hai đường thẳng, tính chất song song, định lí ba giao tuyến và ứng dụng thực tế." />
+    <meta name="author" content="Eliza Tâm Dương" />
+    <meta name="copyright" content="Eliza Tâm Dương - 0962571826" />
+    <meta property="og:title" content="Không Gian 3D: Hai Đường Thẳng Song Song" />
+    <meta property="og:description" content="Phòng thí nghiệm hình học không gian 3D tương tác: Khám phá vị trí tương đối của hai đường thẳng, tính chất song song, định lí ba giao tuyến và ứng dụng thực tế." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=STIX+Two+Text:ital,wght@0,400;0,600;1,400;1,600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#0b0f19] text-slate-100 antialiased overflow-hidden select-none">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

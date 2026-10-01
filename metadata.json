@@ -1,0 +1,6 @@
+{
+  "name": "Không Gian 3D: Hai Đường Thẳng Song Song",
+  "description": "Phòng thí nghiệm hình học không gian 3D tương tác: Khám phá vị trí tương đối của hai đường thẳng, tính chất song song, định lí ba giao tuyến và ứng dụng thực tế.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
